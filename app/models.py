@@ -31,6 +31,10 @@ class User(UserMixin,db.Model):
     def __refr__(self):
         return f'User{self.username}'
 
+@login_manager.user_loader
+def load_user(user_id):
+    return User.query.get(int(user_id))
+
 class Category(db.Model):
     id = db.Column(db.Integer,primary_key=True)
     name = db.Column(db.String(255),index=True,unique=True)

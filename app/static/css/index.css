@@ -1,0 +1,56 @@
+/* 
+    font-family: 'Dancing Script', cursive;
+    font-family: 'Josefin Sans', sans-serif;
+*/
+
+body{
+    padding: 0;
+    background-color: #7D5A50;
+}
+
+/* Navbar */
+ul,li{
+    list-style: none;
+}
+
+.navbar-collapse{
+    float: right;
+    padding-top: 1.5vh;
+}
+
+.navbar-brand{
+    font-family: 'Dancing Script', cursive;
+    color: #FCDEC0;
+    text-decoration: none;
+    padding: 1vw;
+    font-size:4rem;
+    font-weight: 700;
+}
+
+.navbar-brand:hover{
+    font-family: 'Dancing Script', cursive;
+    color: #FCDEC0;
+    text-decoration: none;
+    font-size: 5rem;
+}
+
+.nav-link{
+    color: #FCDEC0;
+    text-decoration: none;
+    top: 1vh;
+    padding:1vw;
+    font-size: large;
+    font-family: 'Josefin Sans', sans-serif;
+    font-weight: 700;
+}
+
+.nav-link:hover{
+    text-decoration: none;
+    font-size: larger;
+    color: #FCDEC0;
+    background-color: #B4846C;
+}
+
+.navbar-toggle{
+    background-color: #FCDEC0;
+}
