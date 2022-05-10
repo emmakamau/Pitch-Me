@@ -2,13 +2,14 @@ from email import message
 from flask_wtf import FlaskForm
 from wtforms import *
 from wtforms.validators import *
+from wtforms.widgets import *
 from ..models import *
 
 class RegistrationForm(FlaskForm):
-    email=StringField('Email Address',validators=[InputRequired(),Email()])
-    username=StringField('Username',validators=[InputRequired()])
-    password=PasswordField('Password',validators=[InputRequired(),EqualTo('password_confrim',message='Passwords do not match')])
-    password_confirm=PasswordField('Confirm Password',validators=[InputRequired()])
+    email=StringField('Email Address',validators=[InputRequired(),Email()],render_kw={"placeholder": "janedoe@example.com"})
+    username=StringField('Username',validators=[InputRequired()],render_kw={"placeholder":"janedoe"})
+    password=PasswordField('Password',validators=[InputRequired(),EqualTo('password_confrim',message='Passwords do not match')],render_kw={"placeholder":"********"})
+    password_confirm=PasswordField('Confirm Password',validators=[InputRequired()],render_kw={"placeholder":"********"})
     submit = SubmitField('Sign Up')
 
     def validate_email(self,data_field):
