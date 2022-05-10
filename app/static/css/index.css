@@ -27,6 +27,17 @@ body{
     width: 10vw;
 }
 
+.page-links{
+    color: #FCDEC0;
+    font-size: large;
+    font-family: 'Dancing Script', cursive;
+}
+
+.page-links:hover{
+    color: #FCDEC0;
+    font-size: larger;
+}
+
 /* Navbar */
 ul,li{
     list-style: none;
@@ -90,5 +101,46 @@ ul,li{
     font-size: large;
 }
 
+.sign-in-text{
+    margin-top:2vh;
+    color: #FCDEC0;
+    font-weight: bold;
+}
 
+
+/* Media Queries */
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+    .signup-card{
+        width: 80%;
+        padding: 4vh 3vh;
+    }
+    .btn{
+        width: auto;
+    }
+    .navbar{
+        padding: 3vw 1vw;
+    }
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+    .signup-card{
+        width: 50%;
+        padding: 4vh 3vh;
+    }
+    .btn{
+        width: auto;
+    }
+
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+    .signup-card{
+        width: 30%;
+        padding: 4vh 3vh;
+    }
+}
 
