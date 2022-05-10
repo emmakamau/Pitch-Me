@@ -3,6 +3,8 @@
     font-family: 'Josefin Sans', sans-serif;
 */
 
+/* General styling */
+
 body{
     padding: 0;
     background-color: #7D5A50;
@@ -36,6 +38,61 @@ body{
 .page-links:hover{
     color: #FCDEC0;
     font-size: larger;
+}
+
+.circle{
+    height: 20rem;
+    width: 20rem;
+    background-color: #E5B299;
+    opacity: 0.2;
+    border-radius: 50%;
+    display: inline-block;
+    /* float:left; */
+}
+
+.star{
+    margin: 20px;
+    /* float: right; */
+    z-index: -20;
+    opacity:0.3;
+    display: inline-block;
+    width: 0px;
+    height: 0px;
+    border-right: 45px solid transparent;
+    border-bottom: 40px solid #B4846C;
+    border-left: 45px solid transparent;
+    transform: rotate(35deg);
+    cursor: pointer;
+}
+
+.star:after {
+    position: absolute;
+    display: inline-block;
+    left:-45px;
+    top:0px;
+    width: 0px;
+    height: 0px;
+    border-right: 45px solid transparent;
+    border-bottom: 40px solid #B4846C;
+    border-left: 45px solid transparent;
+    content: '';
+    transform: rotate(-70deg);
+    cursor:pointer;
+}
+
+.star:before {
+    position: absolute;
+    display: inline-block;
+    left:-32px;
+    top:-20px;
+    width: 0px;
+    height: 0px;
+    border-right: 16px solid transparent;
+    border-bottom: 35px solid #B4846C;
+    border-left: 16px solid transparent;
+    content: '';
+    transform: rotate(-34deg);
+    cursor:pointer;
 }
 
 /* Navbar */
@@ -89,7 +146,7 @@ ul,li{
     background-color: #FCDEC0;
 }
 
-/* Signup page styling */
+/* Signup and Signin page styling */
 .signup-card{
     width: 35%;
     border: #B4846C 2px solid;

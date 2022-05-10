@@ -4,6 +4,7 @@ from ..models import *
 from .forms import *
 from .. import db
 from flask_login import *
+from ..email import mail_message
 
 
 @auth.route('/signup',methods=['GET','POST'])
@@ -14,7 +15,9 @@ def signup():
         db.session.add(user)
         db.session.commit()
 
-        return redirect(url_for('auth.signup'))
+        mail_message("Welcome to Pitch-Me","email/welcome_user",user.email,user=user)
+
+        return redirect(url_for('auth.signin'))
     title="SignUp"
     return render_template('auth/signup.html',signup_form=signup_form, title=title)
 
@@ -31,3 +34,9 @@ def signin():
 
     title = "SignIn"
     return render_template('auth/signin.html',signin_form = signin_form,title=title)
+
+@auth.route('/signout')
+@login_required
+def signout():
+    logout_user()
+    return redirect(url_for("main.index"))

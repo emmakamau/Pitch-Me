@@ -4,12 +4,14 @@
 {% block content %}
 <div class="signin" align="center">
     <div class="div">
+        <span class="star"></span>
         <div class="card signup-card">
             {{wtf.quick_form(signin_form)}}
         </div>
         <div class="sign-in-text">
             <p>Don't have an account? <a class="page-links" href="{{url_for('auth.signup')}}">SignUp here</a></p>
         </div>
+        <span class="circle"></span>
     </div>
 </div>
 {% endblock %}

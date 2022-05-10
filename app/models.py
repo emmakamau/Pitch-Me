@@ -13,7 +13,7 @@ class User(UserMixin,db.Model):
     email = db.Column(db.String(255),unique=True,index=True)
     bio = db.Column(db.String(600),index=True)
     prof_pic = db.Column(db.String())
-    pitches = db.relationship('Pitch',backref = 'pitch',lazy ='dynamic')
+    pitches = db.relationship('Pitch',backref='user',lazy ='dynamic')
     password_hash = (db.String(30))
 
     pass_secure=db.Column(db.String(255))
@@ -66,7 +66,7 @@ class Pitch(db.Model):
     pitch = db.Column(db.String(300))
     upvote = db.Column(db.Integer)
     downote = db.Column(db.Integer)
-    user = db.Column(db.Integer,db.ForeignKey('user.id'))
+    user_id = db.Column(db.Integer,db.ForeignKey('user.id'))
     category = db.Column(db.Integer,db.ForeignKey('category.id'))
 
     def save_pitch(self):
