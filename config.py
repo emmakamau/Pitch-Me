@@ -2,8 +2,8 @@
 import os
 
 class Config:
-    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://postgres:{password}@localhost/pitchme'
-    print(SQLALCHEMY_DATABASE_URI)
+    password = os.environ.get('SQL_PASSWORD')
+    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://postgres:{}@localhost/pitchme'.format(password)
     pass
 
 class ProdConfig(Config):
@@ -14,8 +14,7 @@ class DevConfig(Config):
 
 class TestConfig(Config):
     password = os.environ.get('SQL_PASSWORD')
-    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://postgres:{password}@localhost/pitchme_test'
-    print(SQLALCHEMY_DATABASE_URI)
+    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://postgres:{}@localhost/pitchme_test'.format(password)
     pass
 
 config_options = {

@@ -1,0 +1,20 @@
+from email import message
+from flask_wtf import FlaskForm
+from wtforms import *
+from wtforms.validators import *
+from ..models import *
+
+class RegistrationForm(FlaskForm):
+    email=StringField('Email Address',validators=[InputRequired(),Email()])
+    username=StringField('Username',validators=[InputRequired()])
+    password=PasswordField('Password',validators=[InputRequired(),EqualTo('password_confrim',message='Passwords do not match')])
+    password_confirm=PasswordField('Confirm Password',validators=[InputRequired()])
+    submit = SubmitField('Sign Up')
+
+    def validate_email(self,data_field):
+        if User.query.filter_by(email=data_field.data).first():
+            raise ValidationError('An account has already been registered with that email')
+
+    def validate_username(self,data_field):
+        if User.query_filter_by(username=data_field.data).first():
+            raise ValidationError('Username already exists.')
