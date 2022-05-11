@@ -1,4 +1,23 @@
 {% extends 'base.html' %}
 
 {% block content %}
+<div class="home-page">
+    <div class="intro">
+        <h2 class="home-page-quote">
+            If you can not explain it simply, you do not understand it well enough.<br>
+            <span class="quote-author">Albert Einstein</span>
+        </h2>
+    </div>
+    <div class="new-pitch" align="center">
+        <p class="about-us">
+            In life, you only have 60 seconds to impress someone. 1 minute can make or break you. How do we make sure that you use your 1 minute to actually say something meaningful? 
+        </p>
+        <p class="about-us">
+            Create pitches and get insight on other pitches by our vast community.
+        </p><br><br>
+        <a class="btn-primary" href="{{url_for('main.create_pitch',userid=current_user.id,uname=current_user.username)}}">
+            CREATE NEW PITCH
+        </a>
+    </div>
+</div>
 {% endblock %}

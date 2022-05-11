@@ -1,0 +1,15 @@
+{% extends 'base.html'%}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block content %}
+<div class="create-pitch-form form-check-inline" align="center">
+    {{ wtf.quick_form(create_pitch_form) }}
+    <div class="display-star">
+        <span class="star"></span>
+        <span class="star"></span>
+        <span class="star"></span>
+        <span class="star"></span>
+        <span class="star"></span>
+    </div>
+</div>
+{% endblock %}

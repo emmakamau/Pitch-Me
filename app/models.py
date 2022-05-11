@@ -14,7 +14,13 @@ class User(UserMixin,db.Model):
     bio = db.Column(db.String(600),index=True)
     prof_pic = db.Column(db.String())
     pitches = db.relationship('Pitch',backref='user',lazy ='dynamic')
+    comments = db.relationship('Comment',backref='user',lazy ='dynamic')
     password_hash = (db.String(30))
+
+    # @classmethod
+    # def get_users(cls,username):
+    #     user = User.query.all()
+    #     return user
 
     pass_secure=db.Column(db.String(255))
     @property
@@ -35,12 +41,13 @@ class User(UserMixin,db.Model):
 def load_user(user_id):
     return User.query.get(int(user_id))
 
-class Category(db.Model):
-    id = db.Column(db.Integer,primary_key=True)
-    name = db.Column(db.String(255),index=True,unique=True)
+# class Category(db.Model):
+#     id = db.Column(db.Integer,primary_key=True)
+#     name = db.Column(db.String(255),index=True,unique=True)
+#     pitches = db.relationship('Pitch',backref='category',lazy ='dynamic')
 
-    def __refr__(self):
-        return f'User{self.name}'
+#     def __refr__(self):
+#         return f'User{self.name}'
 
 class Comment(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -66,8 +73,9 @@ class Pitch(db.Model):
     pitch = db.Column(db.String(300))
     upvote = db.Column(db.Integer)
     downote = db.Column(db.Integer)
+    category = db.Column(db.String)
     user_id = db.Column(db.Integer,db.ForeignKey('user.id'))
-    category = db.Column(db.Integer,db.ForeignKey('category.id'))
+    comment_id = db.Column(db.Integer,db.ForeignKey('comment.id'))
 
     def save_pitch(self):
         db.session.add(self)

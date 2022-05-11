@@ -29,6 +29,24 @@ body{
     width: 10vw;
 }
 
+.btn-primary{
+    background-color:#FCDEC0;
+    color:#7D5A50;
+    font-weight: 800;
+    border: 1px solid #FCDEC0;
+    margin-top: 4vh;
+    padding: 2vh;
+}
+
+.btn-primary:hover{
+    background-color:#FCDEC0;
+    color:#7D5A50;
+    font-weight: bolder;
+    font-size: large;
+    border: 1px solid #7D5A50;
+    width: 10vw;
+}
+
 .page-links{
     color: #FCDEC0;
     font-size: large;
@@ -187,6 +205,43 @@ ul,li{
 .decorate{
     margin-top: 6vh;
 }
+
+
+/* Home page styling */
+.home-page-quote{
+    color:white;
+    font-size: 8vh;
+    width: 40%;
+    margin: auto;
+    font-weight: bolder;
+}
+
+.quote-author{
+    color: white;
+    font-family: 'Dancing Script', cursive;
+    font-size:xx-large;
+    float: right;
+}
+
+.new-pitch{
+    color: #FCDEC0;
+    width: 40%;
+    margin: 10vh auto;
+    font-weight: 700;
+}
+
+/* Styling for create pitch form */
+
+.create-pitch-form{
+    color:#FCDEC0;
+    width: 30%;
+    margin: auto;
+}
+
+.display-star{
+    margin-top: 4vh;
+}
+
 
 /* Media Queries */
 
