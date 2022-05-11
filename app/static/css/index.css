@@ -165,6 +165,29 @@ ul,li{
 }
 
 
+/* Profile page styling */
+.profile-page{
+    color: #FCDEC0;
+}
+
+.profile-pic{
+    border:none;
+    border-radius: 50%;
+}
+
+.update-profile{
+    color: #FCDEC0;
+    align-items: center;
+}
+
+.bio-update{
+    width: 50%;
+}
+
+.decorate{
+    margin-top: 6vh;
+}
+
 /* Media Queries */
 
 /* Extra small devices (phones, 600px and down) */
