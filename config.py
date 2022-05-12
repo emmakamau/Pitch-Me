@@ -4,7 +4,6 @@ import os
 class Config:
     password = os.environ.get('SQL_PASSWORD')
     SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://postgres:{}@localhost/pitchme'.format(password)
-    print(SQLALCHEMY_DATABASE_URI)
     SECRET_KEY = os.environ.get('SECRET_KEY')
     UPLOADED_PHOTOS_DEST ='app/static/photos'
     
