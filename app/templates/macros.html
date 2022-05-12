@@ -1,0 +1,17 @@
+{% macro displayPitches(pitch_list) %}
+
+{% block content %}
+{% for pitch in pitch_list %}
+<div class="col-xs-12 col-sm-4 col-md-2 col-lg-2 pitch-card">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title"></h5>
+            <p class="card-text">{{pitch.pitch}}</p>
+            <a href="#" class="btn btn-primary">Go somewhere</a>
+        </div>
+    </div>
+</div>
+{% endfor %}
+{% endblock %}
+
+{% endmacro %}

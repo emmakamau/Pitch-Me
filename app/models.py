@@ -89,7 +89,11 @@ class Pitch(db.Model):
     @classmethod
     def get_all_pitches_user(cls,id):
         pitches = Pitch.query.filter_by(user_id=id)
-        print(pitches)
+        return pitches
+
+    @classmethod
+    def get_all_pitches_category(cls,category):
+        pitches = Pitch.query.filter_by(category=category)
         return pitches
 
     def __refr__(self):

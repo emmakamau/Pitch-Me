@@ -22,7 +22,6 @@ def profile(userid,uname):
    user = User.query.filter_by(username = uname).first()
    #userid = User.query.filter_by(id=userid).first()
    pitches = Pitch.get_all_pitches_user(userid)
-
    if user is None:
       abort(404)
    return render_template("profile/profile.html", user = user, pitches=pitches)
@@ -73,3 +72,24 @@ def create_pitch(userid,uname):
       
       return redirect(url_for('.profile',userid=user.id,uname=user_name.username))
    return render_template('create-pitch.html',create_pitch_form=create_pitch_form)
+
+# Display pitches of Tech category
+@main.route('/category/<category>')
+def tech_pitches(category):
+   tech_pitches= Pitch.get_all_pitches_category(category)
+   
+   return render_template('category/tech-pitch.html',tech_pitches=tech_pitches)
+
+# Display pitches of Sales category
+@main.route('/category/<category>')
+def sales_pitches(category):
+   sales_pitches= Pitch.get_all_pitches_category(category)
+   
+   return render_template('category/sales-pitch.html',sales_pitches=sales_pitches)
+
+# Display pitches of Marketing category
+@main.route('/category/<category>')
+def marketing_pitches(category):
+   marketing_pitches= Pitch.get_all_pitches_category(category)
+   
+   return render_template('category/marketing-pitch.html',marketing_pitches=marketing_pitches)

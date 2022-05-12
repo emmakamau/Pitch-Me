@@ -256,6 +256,20 @@ ul,li{
     margin-top: 4vh;
 }
 
+/* Category pages styling */
+
+.display-pitches-category{
+    color: #FCDEC0;
+}
+
+.pitch-not-available{
+    margin-top: 20vh;
+}
+
+.pitch-card{
+    background-color: #FCDEC0;
+    color: #7D5A50;
+}
 
 /* Media Queries */
 

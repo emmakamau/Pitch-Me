@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% import 'macros.html' as macro %}
+
+{% block content %}
+<div class="display-pitches-category">
+    {% if tech_pitches %}
+    <div class="row">
+        {{macro.displayPitches(marketing_pitches)}}
+    </div>
+    {% else%}
+    <div class="pitch-not-available" align="center" >
+        <h3 class="text-center">This category has no pitches</h3><br><br>
+        <a class="btn-primary" href="{{url_for('main.create_pitch',userid=current_user.id,uname=current_user.username)}}">
+            CREATE NEW PITCH
+        </a><br><br><br><br>
+        <span class="star"></span>
+        <span class="star"></span>
+        <span class="star"></span>
+        <span class="star"></span>
+        <span class="star"></span>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}
