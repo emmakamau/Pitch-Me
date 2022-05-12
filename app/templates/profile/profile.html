@@ -4,41 +4,73 @@
 <div class="container profile-page">
     <div class="row">
         <!-- displaying  Username-->
+        <div class="col-md-1"></div>
         <div class="col-md-4">
-            <div class="profile-picture">
-                {% if user.prof_pic %}
-                <img src="{{url_for('static',filename=user.prof_pic)}}" alt="user-profile-pic" class="img-thumbnail profile-pic">
-                {%else%}
-                <p>No profile picture</p>
-                {% endif %}
-                <br><br>
+            <div class="display-user-profile">
+                <div class="profile-picture">
+                    {% if user.prof_pic %}
+                    <img src="{{url_for('static',filename=user.prof_pic)}}" alt="user-profile-pic"
+                        class="img-thumbnail profile-pic">
+                    {%else%}
+                    <p>No profile picture</p>
+                    {% endif %}
+                    <br><br>
+                    {% if user == current_user %}
+                    <form action="{{url_for('main.update_pic',uname=user.username)}}" method="post"
+                        enctype="multipart/form-data">
+                        <input type="file" name="photo" class="form-control" required>
+                        <input type="submit" class="btn">
+                    </form>
+                    {% endif %}
+                </div>
+                <div class="profile-details">
+                    <h3> {{user.username| capitalize}} </h3>
+                    <!--Displaying user bio-->
+                    {% if user.bio %}
+                    <p> {{user.bio}}</p>
+                    {%else%}
+                    <p> {{user.username| capitalize}} has no bio </p>
+                    {% endif %}
+                </div>
                 {% if user == current_user %}
-                <form action="{{url_for('main.update_pic',uname=user.username)}}" method="post"
-                    enctype="multipart/form-data">
-                    <input type="file" name="photo" class="form-control" required>
-                    <input type="submit" class="btn">
-                </form>
-                {% endif %}
-            </div>
-            <div class="profile-details">
-                <h3> {{user.username| capitalize}} </h3>
-                <!--Displaying user bio-->
-                {% if user.bio %}
-                <p> {{user.bio}}</p>
-                {%else%}
-                <p> {{user.username| capitalize}} has no bio </p>
-                {% endif %}
-            </div>
-            <div class="edit-profile">
-                {% if user == current_user %}
-                <a class="page-links" href="{{url_for('main.update_profile',uname=user.username)}}">Edit profile</a>
+                <span class="page-links" href="{{url_for('main.update_profile',uname=user.username)}}">Edit
+                    profile</span>
                 {% endif %}
             </div>
         </div>
+        <div class="col-md-1"></div>
 
         <!--Display profile photo-->
-        <div class="col-md-8">
+        <div class="col-md-6 display-user-pitches">
 
+            <h2>My Pitches <span class="new-pitch-btn">
+                    <a class="btn-primary"
+                        href="{{url_for('main.create_pitch',userid=current_user.id,uname=current_user.username)}}">
+                        NEW PITCH
+                    </a>
+                </span></h2>
+            <div class="user-pitch">
+                {% if pitches %}
+                {% for pitch in pitches %}
+                <div class="card mb-3">
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <p class="card-text">{{pitch.pitch}}</p>
+                            <p class="card-text"><small class="text-muted"></small></p>
+                            <p>
+                                {% if pitch.upvotes %}<span>{{pitch.upvotes}} Likes</span>{% endif %}
+                                {% if pitch.downvotes %}<span>{{pitch.downvotes}} Dislikes</span>{% endif %}
+                                {% if pitch.category %}<span>{{pitch.category}} Category</span>{% endif %}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+                {% endif %}
+            </div>
+            <div class="">
+
+            </div>
         </div>
     </div>
 </div>

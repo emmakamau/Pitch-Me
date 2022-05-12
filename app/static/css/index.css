@@ -206,6 +206,20 @@ ul,li{
     margin-top: 6vh;
 }
 
+.display-user-pitches{
+    border-left: #FCDEC0 solid 3px;
+    padding: 0 4vw;
+}
+
+.new-pitch-btn{
+    float: right;
+}
+
+.vote-icons{
+    height: 4vh;
+    width: 4vw;
+}
+
 
 /* Home page styling */
 .home-page-quote{

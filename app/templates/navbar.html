@@ -19,7 +19,7 @@
             </li>
             {% if current_user.is_authenticated %}
             <li class="nav-item">
-                <a class="nav-link disabled" href="{{url_for('main.profile',uname=current_user.username)}}">Profile</a>
+                <a class="nav-link disabled" href="{{url_for('main.profile',userid=current_user.id,uname=current_user.username)}}">Profile</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link disabled" href="{{url_for('auth.signout')}}">Sign out</a>

@@ -17,13 +17,15 @@ def index():
    return render_template('index.html')
 
 # View user profile
-@main.route('/user/<uname>')
-def profile(uname):
-    user = User.query.filter_by(username = uname).first()
+@main.route('/user/<userid>/<uname>')
+def profile(userid,uname):
+   user = User.query.filter_by(username = uname).first()
+   #userid = User.query.filter_by(id=userid).first()
+   pitches = Pitch.get_all_pitches_user(userid)
 
-    if user is None:
-        abort(404)
-    return render_template("profile/profile.html", user = user)
+   if user is None:
+      abort(404)
+   return render_template("profile/profile.html", user = user, pitches=pitches)
 
 # Update user profile
 @main.route('/user/<uname>/update',methods = ['GET','POST'])
@@ -62,7 +64,6 @@ def update_pic(uname):
 def create_pitch(userid,uname):
    user = User.query.filter_by(id=userid).first()
    user_name = User.query.filter_by(username=uname).first()
-   print(user)
    create_pitch_form = PitchForm()
    if create_pitch_form.validate_on_submit():
       pitch = create_pitch_form.pitch.data

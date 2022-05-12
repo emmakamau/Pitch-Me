@@ -86,6 +86,12 @@ class Pitch(db.Model):
         pitches = Pitch.query.all()
         return pitches
 
+    @classmethod
+    def get_all_pitches_user(cls,id):
+        pitches = Pitch.query.filter_by(user_id=id)
+        print(pitches)
+        return pitches
+
     def __refr__(self):
         return f'User{self.id}'
    
