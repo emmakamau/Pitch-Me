@@ -1,7 +1,8 @@
-{% macro displayPitches(pitch_list) %}
+{% extends 'base.html' %}
+{% macro displayPitches(pitches) %}
 
 {% block content %}
-{% for pitch in pitch_list %}
+{% for pitch in pitches %}
 <div class="col-xs-12 col-sm-4 col-md-2 col-lg-2 pitch-card">
     <div class="card">
         <div class="card-body">

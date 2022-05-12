@@ -16,7 +16,6 @@ body{
     color: #FCDEC0;
     font-weight: 800;
     border: 1px solid #FCDEC0;
-    width: 10vw;
     margin-top: 2vh;
 }
 
@@ -26,7 +25,6 @@ body{
     font-weight: bolder;
     font-size: large;
     border: 1px solid #7D5A50;
-    width: 10vw;
 }
 
 .btn-primary{
@@ -260,6 +258,7 @@ ul,li{
 
 .display-pitches-category{
     color: #FCDEC0;
+    padding: 3vh;
 }
 
 .pitch-not-available{
@@ -268,8 +267,19 @@ ul,li{
 
 .pitch-card{
     background-color: #FCDEC0;
+    border-radius: 5%;
+    border: #B4846C solid 2px;
     color: #7D5A50;
+    width: 30%;
+    padding:2vh;
+    margin: 2vh;
 }
+
+.vote-section{
+    margin-top: 2vh;
+}
+
+
 
 /* Media Queries */
 

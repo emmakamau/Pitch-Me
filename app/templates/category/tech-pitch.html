@@ -1,16 +1,33 @@
 {% extends 'base.html' %}
-{% import 'macros.html' as macro %}
+{% import 'macros.html' as macro with context %}
 
 {% block content %}
-<div class="display-pitches-category">
+<div class="display-pitches-category center">
     {% if tech_pitches %}
     <div class="row">
-        {{macro.displayPitches(tech_pitches)}}
+        {% for pitch in tech_pitches%}
+        <div class="col-xs-12 col-sm-4 col-md-4 col-lg-2 pitch-card">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title"></h5>
+                    <p class="card-text">{{pitch.pitch}}</p>
+                    <span>Authored By: {{pitch.user_name}}</span><br>
+                    <div class="vote-section" align="center">
+                        <p>
+                            <span>&#128077; {{pitch.upvote}}</span><span>&#128078; {{pitch.downote}}</span>
+                        </p>
+                    </div>
+                    <div class="" align="center"><a href="#" class="btn">View Comments</a></div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
     </div>
     {% else%}
-    <div class="pitch-not-available" align="center" >
+    <div class="pitch-not-available" align="center">
         <h3 class="text-center">This category has no pitches</h3><br><br>
-        <a class="btn-primary" href="{{url_for('main.create_pitch',userid=current_user.id,uname=current_user.username)}}">
+        <a class="btn-primary"
+            href="{{url_for('main.create_pitch',userid=current_user.id,uname=current_user.username)}}">
             CREATE NEW PITCH
         </a><br><br><br><br>
         <span class="star"></span>
