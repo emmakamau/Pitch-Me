@@ -40,7 +40,6 @@ body{
     background-color:#FCDEC0;
     color:#7D5A50;
     font-weight: bolder;
-    font-size: large;
     border: 1px solid #7D5A50;
     width: 10vw;
 }
@@ -313,6 +312,26 @@ ul,li{
     padding: 2vh 4vh;
     color: #FCDEC0;
 }
+
+.pitch-card-comments{
+    height: 40rem;
+    max-height:40rem;
+    overflow-y:auto;
+    margin-top: 6vh;
+    background-color: #FCDEC0;
+    color: #7D5A50;
+    padding: 1vh 2vw;
+}
+
+.pitch-card-main{
+    border-left: #FCDEC0 solid 2px;
+}
+
+.comment-separator{
+    border:#7D5A50 solid 1px;
+}
+
+
 
 /* Media Queries */
 

@@ -3,23 +3,41 @@
 {% block content %}
 <div class="display-comments">
     <div class="row">
-        <div class="col-md-6">
-            {{pitch.pitch}}
+        <div class="col-md-1"></div>
+        <div class="col-md-5 pitch-card pitch-card-display">
+            <div class="card pitch-card-each">
+                <div class="card-body">
+                    <h5 class="card-title"></h5>
+                    <p class="card-text">{{pitch.pitch}}</p>
+                    <!-- <span>Authored By: {{pitch.user_id}}</span><br> -->
+                    <div class="vote-section" align="center">
+                        <p>
+                            <a href="/upvotes/{{pitch.id}}" class="btn-success"><span>&#128077;
+                                    {{pitch.upvotes.count()}}</span></a>
+                            <a href="/downvotes/{{pitch.id}}" class="btn-success"><span>&#128078;
+                                    {{pitch.downvotes.count()}}</span></a>
+                        </p>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="col-md-6">
-            <h2>Comments<span class="new-comment-btn">
-                <a class="btn-primary"
-                    href="/add/comments/{{pitch.id}}">
-                    NEW COMMENT
-                </a>
-            </span></h2>
-            {% if comments %}
-            {% for comment in comments %}
+        <div class="col-md-1"></div>
+        <div class="col-md-5 pitch-card-main">
+            <h4>Comments<span class="new-comment-btn">
+                    <a class="btn-primary" href="/add/comments/{{pitch.id}}">
+                        NEW COMMENT
+                    </a>
+                </span></h4>
+            <div class="pitch-card-comments">
+                {% if comments %}
+                {% for comment in comments %}
                 <p>{{comment.comment}}</p>
-            {% endfor %}
-            {%else%}
-            <p>No comments available for this pitch.</p>
-            {% endif %}
+                <hr class="comment-separator">
+                {% endfor %}
+                {%else%}
+                <p>No comments available for this pitch.</p>
+                {% endif %}
+            </div>
         </div>
     </div>
 </div>

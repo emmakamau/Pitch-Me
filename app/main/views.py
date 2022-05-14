@@ -80,7 +80,7 @@ def upvote(id):
    pitch = Pitch.query.get(id)
    new_vote = Upvote(pitch = pitch, upvote = 1, user_id = current_user.id)
    new_vote.save_upvote()
-   return redirect(url_for('main.index'))
+   return redirect('/pitch/comments/{pitch_id}'.format(pitch_id=id))
 
 # Downvote
 @main.route('/downvotes/<int:id>', methods=['GET', 'POST'])
@@ -89,7 +89,7 @@ def downvote(id):
    pitch = Pitch.query.get(id)
    new_downvote = Downvote(pitch = pitch,downvote = 1, user_id=current_user.id)
    new_downvote.save_downvote()
-   return redirect(url_for('main.index'))
+   return redirect('/pitch/comments/{pitch_id}'.format(pitch_id=id))
 
 # Add Comment for particular pitch
 @main.route('/add/comments/<int:id>', methods=['GET', 'POST'])
