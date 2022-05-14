@@ -4,7 +4,7 @@ Define and initialize classes for our objects
 
 from . import db
 from werkzeug.security import check_password_hash,generate_password_hash
-from flask_login import UserMixin
+from flask_login import UserMixin, current_user
 from . import login_manager
 
 class User(UserMixin,db.Model):
@@ -16,11 +16,6 @@ class User(UserMixin,db.Model):
     pitches = db.relationship('Pitch',backref='user',lazy ='dynamic')
     comments = db.relationship('Comment',backref='user',lazy ='dynamic')
     password_hash = (db.String(30))
-
-    # @classmethod
-    # def get_users(cls,username):
-    #     user = User.query.all()
-    #     return user
 
     pass_secure=db.Column(db.String(255))
     @property
@@ -41,14 +36,6 @@ class User(UserMixin,db.Model):
 def load_user(user_id):
     return User.query.get(int(user_id))
 
-# class Category(db.Model):
-#     id = db.Column(db.Integer,primary_key=True)
-#     name = db.Column(db.String(255),index=True,unique=True)
-#     pitches = db.relationship('Pitch',backref='category',lazy ='dynamic')
-
-#     def __refr__(self):
-#         return f'User{self.name}'
-
 class Comment(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     comment = db.Column(db.String())
@@ -65,17 +52,17 @@ class Comment(db.Model):
         return comments
 
     def __refr__(self):
-        return f'User{self.id}'
+        return f'User{self.comment}'
 
 class Pitch(db.Model):
     #Pitches - id,pitch,upvote,downvote,user,category
     id = db.Column(db.Integer, primary_key=True)
     pitch = db.Column(db.String(300))
-    upvote = db.Column(db.Integer)
-    downote = db.Column(db.Integer)
     category = db.Column(db.String)
     user_id = db.Column(db.Integer,db.ForeignKey('user.id'))
-    comment_id = db.Column(db.Integer,db.ForeignKey('comment.id'))
+    upvotes = db.relationship('Upvote', backref='pitch', lazy='dynamic')
+    downvotes = db.relationship('Downvote', backref='pitch', lazy='dynamic')
+    comment_id =  db.relationship('Comment', backref='pitch', lazy='dynamic')
 
     def save_pitch(self):
         db.session.add(self)
@@ -99,3 +86,52 @@ class Pitch(db.Model):
     def __refr__(self):
         return f'User{self.id}'
    
+class Upvote(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    upvotes = db.Column(db.Integer, default=0)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    pitch_id = db.Column(db.Integer, db.ForeignKey('pitch.id'))
+
+    def save_upvote(self):
+        db.session.add(self)
+        db.session.commit()
+        
+    def upvote(self, id):
+        upvote_pitch = Upvote(user=current_user, pitch_id=id)
+        upvote_pitch.save_upvote()
+        
+    @classmethod
+    def get_upvote(cls, id):
+        upvote = Upvote.query.filter_by(pitch_id=id).all()
+        return upvote
+    
+    @classmethod
+    def all_upvotes(cls):
+        upvotes = Upvote.query.order_by('id').all()
+        return upvotes
+
+class Downvote(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    downvotes = db.Column(db.Integer,default=0)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    pitch_id = db.Column(db.Integer, db.ForeignKey('pitch.id'))
+    
+    def save_downvote(self):
+        db.session.add(self)
+        db.session.commit()
+    
+    def downvote(self, id):
+        downvote_pitch = Downvote(user=current_user, pitch_id=id)
+        downvote_pitch.save_downvote()
+        
+    @classmethod
+    def get_downvote(cls, id):
+        downvote = Downvote.query.filter_by(pitch_id=id).all()
+        return downvote
+    
+    @classmethod
+    def all_downvotes(cls):
+        downvotes = Downvote.query.order_by('id').all()
+        return downvotes
+
+
