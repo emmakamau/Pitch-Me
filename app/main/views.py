@@ -92,18 +92,26 @@ def downvote(id):
    return redirect(url_for('main.index'))
 
 # Add Comment for particular pitch
-@main.route('/comments/<int:id>', methods=['GET', 'POST'])
+@main.route('/add/comments/<int:id>', methods=['GET', 'POST'])
 @login_required
-def comments(id):
+def add_comment(id):
    comment_form = CommentForm()
    pitch = Pitch.query.get(id)
    user = User.query.get(id)
    
    if comment_form.validate_on_submit():
-      new_comment = Comment(comment_form=comment_form.comment.data, pitch_id=id, user_id=current_user.id)
+      new_comment = Comment(comment=comment_form.comment.data, pitch_id=id, user_id=current_user.id)
       new_comment.save_comment()
-      return redirect('/comments/{pitch_id}'.format(pitch_id=id))
-   return render_template('comments.html', comment_form=comment_form, pitch=pitch, user=user)
+      return redirect('/pitch/comments/{pitch_id}'.format(pitch_id=id))
+   return render_template('add-comment.html', comment_form=comment_form, pitch=pitch, user=user)
+
+# Display comments for a pitch
+@main.route('/pitch/comments/<int:id>')
+def display_comments(id):
+   pitch = Pitch.query.get(id)
+   comments = Comment.get_comment(id)
+   return render_template('display-comments.html',pitch=pitch,comments=comments)
+
 
 # Display pitches of Tech category
 @main.route('/category/<category>')

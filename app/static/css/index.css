@@ -305,6 +305,14 @@ ul,li{
     color:#FCDEC0;
 }
 
+.new-comment-btn{
+    float: right;
+}
+
+.display-comments{
+    padding: 2vh 4vh;
+    color: #FCDEC0;
+}
 
 /* Media Queries */
 
