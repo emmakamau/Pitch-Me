@@ -14,22 +14,24 @@ from .. import db, photos
 # Homepage/Landing page
 @main.route('/')
 def index(): 
-   return render_template('index.html')
+   title = 'Pitch Me'
+   return render_template('index.html',title=title)
 
 # View user profile
 @main.route('/user/<userid>/<uname>')
 def profile(userid,uname):
    user = User.query.filter_by(username = uname).first()
-   #userid = User.query.filter_by(id=userid).first()
+   title='User Profile'
    pitches = Pitch.get_all_pitches_user(userid)
    if user is None:
       abort(404)
-   return render_template("profile/profile.html", user = user, pitches=pitches)
+   return render_template("profile/profile.html", title = title, pitches=pitches,user=user)
 
 # Update user profile
 @main.route('/user/<uname>/update',methods = ['GET','POST'])
 @login_required
 def update_profile(uname):
+   title='Update Profile'
    user = User.query.filter_by(username = uname).first()
    if user is None:
       abort(404)
@@ -43,7 +45,7 @@ def update_profile(uname):
       db.session.commit()
 
       return redirect(url_for('.profile',uname=user.username))
-   return render_template('profile/update-profile.html',form_update_prof=form_update_prof)
+   return render_template('profile/update-profile.html',form_update_prof=form_update_prof,title=title)
 
 # Update user profile picture
 @main.route('/user/<uname>/update/pic',methods= ['POST'])
@@ -61,6 +63,7 @@ def update_pic(uname):
 @main.route('/<userid>/<uname>/create-pitch', methods=['GET','POST'])
 @login_required
 def create_pitch(userid,uname):
+   title='New Pitch'
    user = User.query.filter_by(id=userid).first()
    user_name = User.query.filter_by(username=uname).first()
    create_pitch_form = PitchForm()
@@ -71,7 +74,7 @@ def create_pitch(userid,uname):
       new_pitch.save_pitch()
       
       return redirect(url_for('.profile',userid=user.id,uname=user_name.username))
-   return render_template('create-pitch.html',create_pitch_form=create_pitch_form)
+   return render_template('create-pitch.html',create_pitch_form=create_pitch_form,title=title)
 
 # Upvote
 @main.route('/upvotes/<int:id>', methods=['GET', 'POST'])
@@ -95,6 +98,7 @@ def downvote(id):
 @main.route('/add/comments/<int:id>', methods=['GET', 'POST'])
 @login_required
 def add_comment(id):
+   title='Add Comment'
    comment_form = CommentForm()
    pitch = Pitch.query.get(id)
    user = User.query.get(id)
@@ -103,33 +107,34 @@ def add_comment(id):
       new_comment = Comment(comment=comment_form.comment.data, pitch_id=id, user_id=current_user.id)
       new_comment.save_comment()
       return redirect('/pitch/comments/{pitch_id}'.format(pitch_id=id))
-   return render_template('add-comment.html', comment_form=comment_form, pitch=pitch, user=user)
+   return render_template('add-comment.html', comment_form=comment_form, pitch=pitch, user=user,title=title)
 
 # Display comments for a pitch
 @main.route('/pitch/comments/<int:id>')
 def display_comments(id):
+   title='Comments'
    pitch = Pitch.query.get(id)
    comments = Comment.get_comment(id)
-   return render_template('display-comments.html',pitch=pitch,comments=comments)
+   return render_template('display-comments.html',pitch=pitch,comments=comments,title=title)
 
 
 # Display pitches of Tech category
 @main.route('/category/<category>')
 def tech_pitches(category):
    tech_pitches= Pitch.get_all_pitches_category(category)
-   
-   return render_template('category/tech-pitch.html',tech_pitches=tech_pitches)
+   title='Category'
+   return render_template('category/tech-pitch.html',tech_pitches=tech_pitches,title=title)
 
 # Display pitches of Sales category
 @main.route('/category/<category>')
 def sales_pitches(category):
    sales_pitches= Pitch.get_all_pitches_category(category)
-   
-   return render_template('category/sales-pitch.html',sales_pitches=sales_pitches)
+   title='Category'
+   return render_template('category/sales-pitch.html',sales_pitches=sales_pitches,title=title)
 
 # Display pitches of Marketing category
 @main.route('/category/<category>')
 def marketing_pitches(category):
    marketing_pitches= Pitch.get_all_pitches_category(category)
-   
-   return render_template('category/marketing-pitch.html',marketing_pitches=marketing_pitches)
+   title='Category'
+   return render_template('category/marketing-pitch.html',marketing_pitches=marketing_pitches,title=title)
