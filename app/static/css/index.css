@@ -212,11 +212,26 @@ ul,li{
     float: right;
 }
 
-.vote-icons{
-    height: 4vh;
-    width: 4vw;
+.pitch-separator{
+    border: #FCDEC0 solid 1px;
+    opacity: 0.2;
+    width: 80%;
 }
 
+.pitch-card-extras{
+    padding: 0 1vw;
+}
+
+.user-pitch{
+    max-height: 60rem;
+    overflow-y: auto;
+    margin-top: 4vh;
+}
+
+.card-text{
+    font-weight: bolder;
+    width: 80%;
+}
 
 /* Home page styling */
 .home-page-quote{
@@ -296,6 +311,26 @@ ul,li{
     border-radius:5%;
 }
 
+.main-section-category{
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+}
+
+:root {
+    --cardWidth: 300px;
+    --cardHeight: 280px;
+    --cardMargin: 16px;
+  }
+
+.category-pitch-card{
+    width: var(--cardWidth);
+    height: var(--cardHeight);
+    margin: var(--cardMargin);
+    border: 1px solid #FCDEC0;
+    box-sizing: border-box;
+}
+
 /* Styling for comments */
 
 .comments-form{
@@ -314,7 +349,6 @@ ul,li{
 }
 
 .pitch-card-comments{
-    height: 40rem;
     max-height:40rem;
     overflow-y:auto;
     margin-top: 6vh;
@@ -324,13 +358,14 @@ ul,li{
 }
 
 .pitch-card-main{
+    height: 50rem;
     border-left: #FCDEC0 solid 2px;
 }
 
 .comment-separator{
     border:#7D5A50 solid 1px;
+    opacity: 0.2;
 }
-
 
 
 /* Media Queries */
