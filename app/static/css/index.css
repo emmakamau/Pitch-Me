@@ -279,6 +279,31 @@ ul,li{
     margin-top: 2vh;
 }
 
+.btn-success{
+    background-color: #7D5A50;
+    color: #FCDEC0;
+    margin: 1vh;
+    padding: 1vh;
+    text-decoration: none;
+    border-radius:5%;
+}
+
+.btn-success:hover{
+    background-color:#B4846C;
+    color: #FCDEC0;
+    margin: 1vh;
+    padding: 1vh;
+    text-decoration: none;
+    border-radius:5%;
+}
+
+/* Styling for comments */
+
+.comments-form{
+    width: 40%;
+    margin: auto;
+    color:#FCDEC0;
+}
 
 
 /* Media Queries */

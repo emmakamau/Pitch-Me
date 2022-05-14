@@ -73,6 +73,38 @@ def create_pitch(userid,uname):
       return redirect(url_for('.profile',userid=user.id,uname=user_name.username))
    return render_template('create-pitch.html',create_pitch_form=create_pitch_form)
 
+# Upvote
+@main.route('/upvotes/<int:id>', methods=['GET', 'POST'])
+@login_required
+def upvote(id):
+   pitch = Pitch.query.get(id)
+   new_vote = Upvote(pitch = pitch, upvote = 1, user_id = current_user.id)
+   new_vote.save_upvote()
+   return redirect(url_for('main.index'))
+
+# Downvote
+@main.route('/downvotes/<int:id>', methods=['GET', 'POST'])
+@login_required
+def downvote(id):
+   pitch = Pitch.query.get(id)
+   new_downvote = Downvote(pitch = pitch,downvote = 1, user_id=current_user.id)
+   new_downvote.save_downvote()
+   return redirect(url_for('main.index'))
+
+# Add Comment for particular pitch
+@main.route('/comments/<int:id>', methods=['GET', 'POST'])
+@login_required
+def comments(id):
+   comment_form = CommentForm()
+   pitch = Pitch.query.get(id)
+   user = User.query.get(id)
+   
+   if comment_form.validate_on_submit():
+      new_comment = Comment(comment_form=comment_form.comment.data, pitch_id=id, user_id=current_user.id)
+      new_comment.save_comment()
+      return redirect('/comments/{pitch_id}'.format(pitch_id=id))
+   return render_template('comments.html', comment_form=comment_form, pitch=pitch, user=user)
+
 # Display pitches of Tech category
 @main.route('/category/<category>')
 def tech_pitches(category):

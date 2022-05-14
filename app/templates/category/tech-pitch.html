@@ -11,13 +11,14 @@
                 <div class="card-body">
                     <h5 class="card-title"></h5>
                     <p class="card-text">{{pitch.pitch}}</p>
-                    <span>Authored By: {{pitch.user_name}}</span><br>
+                    <!-- <span>Authored By: {{pitch.user_id}}</span><br> -->
                     <div class="vote-section" align="center">
                         <p>
-                            <span>&#128077; {{pitch.upvote}}</span><span>&#128078; {{pitch.downvote}}</span>
+                            <a href="/upvotes/{{pitch.id}}" class="btn-success"><span>&#128077; {{pitch.upvotes.count()}}</span></a>
+                            <a href="/downvotes/{{pitch.id}}" class="btn-success"><span>&#128078; {{pitch.downvotes.count()}}</span></a>
                         </p>
                     </div>
-                    <div class="" align="center"><a href="#" class="btn">View Comments</a></div>
+                    <div class="" align="center"><a href="/comments/{{pitch.id}}" class="btn">View Comments</a></div>
                 </div>
             </div>
         </div>
