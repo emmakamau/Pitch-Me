@@ -5,13 +5,11 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
 from flask_mail import Mail
 from flask_uploads import configure_uploads,UploadSet,IMAGES
-from flask_migrate import Migrate
 
 bootstrap = Bootstrap()
 db = SQLAlchemy()
 login_manager = LoginManager()
 mail = Mail()
-migrate =  Migrate()
 
 login_manager.session_protection = 'strong'
 login_manager.login_view = 'auth.login'
@@ -30,7 +28,6 @@ def create_app(config_name):
     # Initializing flask extensions
     bootstrap.init_app(app)
     db.init_app(app)
-    migrate.init_app(app, db)
     login_manager.init_app(app)
     mail.init_app(app)
 
