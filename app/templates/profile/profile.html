@@ -19,7 +19,7 @@
                         {% if user == current_user %}
                         <form action="{{url_for('main.update_pic',uname=user.username)}}" method="post"
                             enctype="multipart/form-data">
-                            <input type="file" name="photo" class="form-control" required>
+                            <input type="file" name="photo" class="form-control" required><span class="circle"></span>
                             <input type="submit" class="btn">
                         </form>
                         {% endif %}
@@ -35,7 +35,7 @@
                     {% endif %}
                 </div>
                 {% if user == current_user %}
-                <a class="page-links" href="{{url_for('main.update_profile',uname=user.username)}}">Edit
+                <a class="page-links" href="{{url_for('main.update_profile',uname=user.username,userid=user.id)}}">Edit
                     profile</a>
                 {% endif %}
             </div>
@@ -51,7 +51,7 @@
                         NEW PITCH
                     </a>
                 </span>
-            </h2>
+            </h2><span class="circle"></span>
             <div class="user-pitch">
                 {% if pitches %}
                 {% for pitch in pitches %}

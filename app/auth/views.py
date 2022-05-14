@@ -17,12 +17,12 @@ def signup():
 
         mail_message("Welcome to Pitch-Me","email/welcome_user",user.email,user=user)
 
-        return redirect(url_for('auth.signin'))
+        return redirect(url_for('auth.login'))
     title="SignUp"
     return render_template('auth/signup.html',signup_form=signup_form, title=title)
 
 @auth.route('/signin',methods=['GET','POST'])
-def signin():
+def login():
     signin_form = SigninForm()
     if signin_form.validate_on_submit():
         user = User.query.filter_by(email = signin_form.email.data).first()

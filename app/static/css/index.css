@@ -59,16 +59,17 @@ body{
     height: 20rem;
     width: 20rem;
     background-color: #E5B299;
-    opacity: 0.2;
+    opacity: 0.1;
     border-radius: 50%;
     display: inline-block;
-    /* float:left; */
+    position: absolute;
+    z-index: -2;
 }
 
 .star{
     margin: 20px;
-    /* float: right; */
-    z-index: -20;
+    z-index: -2;
+    position: absolute;
     opacity:0.3;
     display: inline-block;
     width: 0px;
@@ -234,6 +235,7 @@ ul,li{
 .user-pitch{
     max-height: 60rem;
     overflow-y: auto;
+    overflow-x: hidden;
     margin-top: 4vh;
 }
 
@@ -293,7 +295,7 @@ ul,li{
     border-radius: 5%;
     border: #B4846C solid 2px;
     color: #7D5A50;
-    /* width: 30%; */
+    width: 30%;
     padding:2vh;
     margin: 2vh;
 }
@@ -360,6 +362,7 @@ ul,li{
 .pitch-card-comments{
     max-height:40rem;
     overflow-y:auto;
+    overflow-x: hidden;
     margin-top: 6vh;
     background-color: #FCDEC0;
     color: #7D5A50;

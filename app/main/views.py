@@ -44,7 +44,7 @@ def update_profile(uname):
       db.session.add(user)
       db.session.commit()
 
-      return redirect(url_for('.profile',uname=user.username))
+      return redirect(url_for('.profile',uname=user.username,userid=user.id))
    return render_template('profile/update-profile.html',form_update_prof=form_update_prof,title=title)
 
 # Update user profile picture
@@ -60,7 +60,7 @@ def update_pic(uname):
     return redirect(url_for('main.profile',uname=uname))
 
 # Pitch form
-@main.route('/<userid>/<uname>/create-pitch', methods=['GET','POST'])
+@main.route('/create-pitch/<userid>/<uname>', methods=['GET','POST'])
 @login_required
 def create_pitch(userid,uname):
    title='New Pitch'
