@@ -367,6 +367,20 @@ ul,li{
     opacity: 0.2;
 }
 
+/* 404 page styling */
+
+.error-page{
+    color:#7D5A50;
+    background-color: #FCDEC0;
+    width: 50%;
+    margin:10vh auto;
+    padding: 2vh;
+}
+
+.error-heading{
+    font-family: 'Dancing Script', cursive;
+    font-size: 8rem;
+}
 
 /* Media Queries */
 
