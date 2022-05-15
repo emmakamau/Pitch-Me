@@ -107,7 +107,7 @@ def add_comment(id):
       new_comment = Comment(comment=comment_form.comment.data, pitch_id=id, user_id=current_user.id)
       new_comment.save_comment()
       return redirect('/pitch/comments/{pitch_id}'.format(pitch_id=id))
-   return render_template('add-comment.html', comment_form=comment_form, pitch=pitch, user=user,title=title)
+   return render_template('comments.html', comment_form=comment_form, pitch=pitch, user=user,title=title)
 
 # Display comments for a pitch
 @main.route('/pitch/comments/<int:id>')
