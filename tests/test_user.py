@@ -2,7 +2,7 @@ import unittest
 from app.models import User
 
 class UserTest(unittest.TestCase):
-    def setUp(self) -> None:
+    def setUp(self):
         self.new_user = User(password='Kenya')
 
     def test_password_true(self):
